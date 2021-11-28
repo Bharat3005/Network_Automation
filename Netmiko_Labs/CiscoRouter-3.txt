@@ -1,0 +1,6 @@
+int lo1
+ip add 3.3.3.3 255.255.255.255
+exit
+router ospf 100
+network 0.0.0.0 0.0.0.0 area 0
+exit

@@ -1,0 +1,111 @@
+upgrade fpd auto
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authentication enable default enable
+aaa authorization exec default local none
+!
+!
+aaa session-id common
+no ip icmp rate-limit unreachable
+ip cef
+!
+!
+!
+!
+no ip domain lookup
+ip domain name lab.org
+ip auth-proxy max-nodata-conns 3
+ip admission max-nodata-conns 3
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username Bharat privilege 15 secret 5 $1$d02A$P.tgXr/UtoFFoEe0em2.u1
+archive
+ log config
+  hidekeys
+ path disk0:
+!
+!
+!
+!
+ip tcp synwait-time 5
+ip ssh version 2
+ip scp server enable
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address dhcp
+ duplex half
+!
+router ospf 100
+ log-adjacency-changes
+ network 0.0.0.0 255.255.255.255 area 0
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+!
+logging alarm informational
+no cdp log mismatch duplex
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+gatekeeper
+ shutdown
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ transport input ssh
+!
+!

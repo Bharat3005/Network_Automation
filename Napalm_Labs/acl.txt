@@ -1,0 +1,8 @@
+ip access-list extended notelnet
+ deny tcp any any eq telnet 
+ permit ip any any 
+
+interface fastethernet 0/0 
+ ip access-group notelnet in 
+
+ 

@@ -1,0 +1,36 @@
+[
+    {
+        "Bharat": [
+            26,
+            "Mumbai",
+            410206
+        ],
+        "Pragati": [
+            24,
+            "Mumbai",
+            400612
+        ],
+        "Shailesh": [
+            26,
+            "Mumbai",
+            400043
+        ]
+    },
+    {
+        "Durgesh": [
+            24,
+            "Mumbai",
+            410216
+        ],
+        "Amit": [
+            34,
+            "Mumbai",
+            400013
+        ],
+        "Rahul": [
+            32,
+            "Mumbai",
+            400001
+        ]
+    }
+]
