@@ -1,0 +1,44 @@
+socat pty,link=/home/bharat/ttyS0,raw,echo=1 tcp:localhost:5003
+
+
+
+Simulating a Serial Connection with Linux and GNS3
+
+In order to test the pyserial module and automate the configuration of networking devices over serial connections, you need a physical device to connect to.
+
+However, there is a way to simulate a serial console in GNS3 and connect to it from a Linux machine (tested with Ubuntu, GNS3 is installed and runs on Ubuntu).
+
+
+1. Install the following packages on Ubuntu:
+
+    sudo apt install screen
+
+    sudo apt install socat
+
+
+2. Start the device in GNS3 and find out the port to which the telnet console is mapped
+
+On Ubuntu execute: ps -ef | grep telnet
+
+In this example, the port is 5008.
+
+
+3. In a terminal, execute the next command to map the telnet port to a virtual serial port:
+
+socat pty,link=/home/YOUR_USER/ttyS0,raw,echo=1 tcp:localhost:5008
+
+
+4. In another terminal, execute the next command to initiate a session:
+
+screen /home/YOUR_USER/ttyS0 9600
+
+
+After, we press ENTER and close the terminal when the device prompt has appeared.
+
+
+In the first terminal, we press Ctrl+c to cancel the socat command, and we execute the same one more time.
+
+socat pty,link=/home/YOUR_USER/ttyS0,raw,echo=1 tcp:localhost:5008
+
+
+Now, we can use the pyserial module in our Python programs: 
